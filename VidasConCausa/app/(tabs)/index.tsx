@@ -39,7 +39,7 @@ export default function HomeScreen() {
         <ThemedText type="title">Registro de Medicamentos</ThemedText>
       </ThemedView>
 
-      <ThemedView style={styles.stepContainer}>
+      <ThemedView >
         <ThemedView style={styles.vertical}>
           <Button radius={"sm"} type="solid" color="#004AAD" buttonStyle={styles.buttonIcon}>
             <Icon name="sort" color="white" />
@@ -50,15 +50,15 @@ export default function HomeScreen() {
           </Button>
         </ThemedView>
       </ThemedView>
-      <ThemedView >
+      <ThemedView style={styles.stepContainer}>
         {medicines.map((u, i) => {
           return (
-            <Card key={i}>
+            <Card key={i} containerStyle={{width:'100%', marginLeft:0}}>
               <ThemedText type='defaultBold'>{u.name}</ThemedText>
               <ThemedText>{u.description}</ThemedText>
               <ThemedView style={styles.vertical}>
-                <ThemedText>Fecha de Expiracion: {u.date}</ThemedText>
-                <ThemedText>Cantidad: {u.quantity}</ThemedText>
+                <ThemedText type='defaultBold'>Expiracion: {u.date}</ThemedText>
+                <ThemedText type='defaultBold'>Cantidad: {u.quantity}</ThemedText>
               </ThemedView>
             </Card>
           );
@@ -75,8 +75,9 @@ const styles = StyleSheet.create({
     gap: 8,
   },
   stepContainer: {
-    gap: 8,
+    gap: 0,
     marginBottom: 8,
+    width: '100%',
   },
   button: {
     width: '100%',
