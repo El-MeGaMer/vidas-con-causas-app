@@ -1,54 +1,68 @@
-import { Image, StyleSheet, Platform } from 'react-native';
-
+import React from 'react';
+import { View, Image, StyleSheet, Platform } from 'react-native';
+import { Divider, Button, Icon, Card } from '@rneui/base';
 import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
 
+
+
 export default function HomeScreen() {
+
+  const medicines = [
+    {
+      name: 'Ivermectina',
+      description: 'Es efectivo contra los ectoparásitos y endoparásitos, y se aplica mediante una única inyección subcutánea o en pastillas. Sus compuestos, obtenidos a partir de la fermentación del Streptomyces avermitilis, paralizan y matan a estos molestos huéspedes que tanto hacen sufrir a nuestros compañeros.',
+      date: '2025-06-28T12:35:39Z',
+      quantity: '3',
+    },
+    {
+      name: 'Amoxicilina',
+      description: 'Se usa para acabar con un tipo concreto de bacterias, por lo que es necesario un diagnóstico bacteriológico previo. De este modo, el/la facultativo/a se asegurará de que las cepas son sensibles a esta medicina, que actúa sobre determinados microorganismos grampositivos y gramnegativos como el Streptococcus suis, la pasteurellosis y la colibacilosis.',
+      date: '2025-04-13T20:42:39Z',
+      quantity: '6',
+    },
+    {
+      name: 'Enrofloxacina',
+      description: 'La enrofloxacina es un antibiótico recomendado para tratar infecciones bacterianas de diversa índole, hablamos tanto de problemas respiratorios como gastrointestinales, cutáneos o del aparato reproductor. Eso sí, hay que evitar su administración a cachorros o a perros con problemas renales.',
+      date: '2025-03-02T04:02:39Z',
+      quantity: '5',
+    },
+  ]
+
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
+      headerBackgroundColor={{ light: '#004AAD', dark: '#004AAD' }}
+    >
       <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
+        <ThemedText type="title">Registro de Medicamentos</ThemedText>
       </ThemedView>
+
       <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12'
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
+        <ThemedView style={styles.vertical}>
+          <Button radius={"sm"} type="solid" color="#004AAD" buttonStyle={styles.buttonIcon}>
+            <Icon name="sort" color="white" />
+          </Button>
+          <Button radius={"sm"} type="solid" color="#004AAD" buttonStyle={styles.button}>
+            Registrar Nuevo
+            <Icon name="add" color="white" />
+          </Button>
+        </ThemedView>
       </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
+      <ThemedView >
+        {medicines.map((u, i) => {
+          return (
+            <Card key={i}>
+              <ThemedText type='defaultBold'>{u.name}</ThemedText>
+              <ThemedText>{u.description}</ThemedText>
+              <ThemedView style={styles.vertical}>
+                <ThemedText>Fecha de Expiracion: {u.date}</ThemedText>
+                <ThemedText>Cantidad: {u.quantity}</ThemedText>
+              </ThemedView>
+            </Card>
+          );
+        })}
       </ThemedView>
     </ParallaxScrollView>
   );
@@ -64,11 +78,18 @@ const styles = StyleSheet.create({
     gap: 8,
     marginBottom: 8,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  button: {
+    width: '100%',
+    height: '75%'
+  },
+  buttonIcon: {
+    width: '70%',
+    height: '80%'
+  },
+  vertical: {
+    marginBottom: 10,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 });
