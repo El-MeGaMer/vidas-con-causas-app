@@ -96,5 +96,7 @@ const styles = StyleSheet.create({
   card:{
     width:'100%', 
     marginLeft:0,
+    borderColor:'#004AAD',
+    borderRadius:5,
   }
 });
