@@ -53,7 +53,7 @@ export default function HomeScreen() {
       <ThemedView style={styles.stepContainer}>
         {medicines.map((u, i) => {
           return (
-            <Card key={i} containerStyle={{width:'100%', marginLeft:0}}>
+            <Card key={i} containerStyle={styles.card}>
               <ThemedText type='defaultBold'>{u.name}</ThemedText>
               <ThemedText>{u.description}</ThemedText>
               <ThemedView style={styles.vertical}>
@@ -93,4 +93,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
+  card:{
+    width:'100%', 
+    marginLeft:0,
+  }
 });
