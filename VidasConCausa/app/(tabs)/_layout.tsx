@@ -34,9 +34,9 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="registerMedicine"
         options={{
-          title: 'Explore',
+          title: 'Registrar Medicina',
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
         }}
       />
